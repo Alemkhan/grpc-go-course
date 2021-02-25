@@ -57,7 +57,7 @@ func (s *CalculatorService) ComputerAverage(stream greetpb.CalculatorService_Com
 		req, err := stream.Recv()
 		if err == io.EOF {
 			fmt.Printf("%v", float64(streamSum/counter))
-			response := &greetpb.AverageResponse{Result: float64(streamSum / counter)}
+			response := &greetpb.AverageResponse{Result: float64(streamSum) / float64(counter)}
 			return stream.SendAndClose(response)
 		}
 		if err != nil {
